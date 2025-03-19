@@ -1,11 +1,7 @@
 import os
 import traceback
 import logging
-from dotenv import load_dotenv
 from openai import OpenAI, OpenAIError
-
-# Loading variable from .env
-load_dotenv()
 
 # Logger configuration
 logging.basicConfig(level=logging.ERROR)

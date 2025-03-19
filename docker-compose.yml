@@ -1,1 +1,30 @@
- 
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+      - chromadb
+    env_file: .env
+
+  db:
+    image: postgres:latest
+    restart: always
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+      POSTGRES_DB: ${POSTGRES_DB}
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  chromadb:
+    image: ghcr.io/chroma-core/chroma
+    volumes:
+      - chroma_data:/data
+
+volumes:
+  pg_data:
+  chroma_data:
+
+

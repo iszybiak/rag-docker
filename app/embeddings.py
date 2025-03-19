@@ -15,7 +15,7 @@ collection = chroma_client.get_or_create_collection(name="rag_collection")
 # Model for generating embeddings (vector)
 embedding_model = SentenceTransformer("all-MiniLM-L6-v2")
 
-def ass_document(text, doc_id):
+def add_document(text, doc_id):
     """Adding a document to the vector database."""
     try:
         embedding = embedding_model.encode(text)

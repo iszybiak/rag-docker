@@ -1,1 +1,9 @@
- 
+fastapi
+uvicorn
+chromadb
+psycopg2
+openai
+sentence-transformers
+sqlalchemy
+logging
+
