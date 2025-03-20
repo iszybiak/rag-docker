@@ -1,5 +1,8 @@
+import io
+
 import chromadb
 import logging
+import fitz
 from sentence_transformers import SentenceTransformer
 
 # Logger configuration
@@ -33,3 +36,12 @@ def search_documents(query, top_k=3):
     except Exception as e:
         logger.error(f"Error searching document: {e}")
         return []
+
+
+def extract_text_from_pdf(pdf_bytes):
+    """Loading a PDF file and returning its text."""
+    pdf_stream = io.BytesIO(pdf_bytes)
+    doc = fitz.open(stream=pdf_stream, filetype="pdf")
+    text = "\n".join(page.get_text() for page in doc)
+    return text
+
