@@ -6,4 +6,7 @@ openai
 sentence-transformers
 sqlalchemy
 logging
-
+PyMuPDF
+python-multipart
+pypdf
+langchain

@@ -1,5 +1,4 @@
 import io
-
 import chromadb
 import logging
 import fitz

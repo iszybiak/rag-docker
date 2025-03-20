@@ -69,19 +69,12 @@ async def upload_pdf(file: UploadFile = File(...), db: Session = Depends(get_db)
     try:
         file_path = file.file.read()
         text = extract_text_from_pdf(file_path)
-        new_document = Document(text=text)
-        db.add(new_document)
-        db.commit()
-        db.refresh(new_document)
-
-        try:
-            add_document(text, new_document.id)
-        except Exception as e:
-            raise HTTPException(status_code=500, detail=f"ChromaDB error: {str(e)}")
-
-        return {"message": "PDF added", "id": new_document.id}
     except Exception as e:
-        raise HTTPException(status_code=500, detail=f"Error processing request: {str(e)}")
+        raise HTTPException(status_code=404, detail=f"File error: {str(e)}")
+    add_doc(text, db)
+
+
+
 
 
 
